@@ -21,35 +21,32 @@
 
     <title>JavaScript Coding Quiz</title>
   </head>
-  <body>
-
-    <main class="container">
-      <div class="row">
-        <!-- Header column with h1, h2 and music button -->
-        <header class="col justify-content-center">
-          <h1 class="font-weight-bold">JavaScript Coding Quiz Challenge</h1>
-          <h2 class="font-weight-light font-italic">
-            Prove that you're the very best, like no one ever was.
-          </h2>
-          <hr />
-          <div id="musicControls" class="text-center">
-            <button class="btn btn-warning btn-xs theme-button">
-              <span class="fa fa-music">Get Pumped Up!</span> 
-            </button>
-            <button class="btn btn-dark btn-xs pause-button">
-              <span class="fa fa-pause">Pause Song</span> 
-            </button>
-          </div>
-          <hr>
-        </header>
-      </div>
+  <body class="d-flex flex-column">
+    <main class="container-fluid flex-fill">
+      <!-- Header column with h1, h2 and music button -->
+      <header>
+        <h1 class="font-weight-bold">JavaScript Coding Quiz Challenge</h1>
+        <h2 class="font-weight-light font-italic">
+          Prove that you're the very best, like no one ever was.
+        </h2>
+        <hr />
+        <div id="musicControls" class="text-center">
+          <button class="btn btn-warning btn-xs theme-button">
+            <span class="fa fa-music">Get Pumped Up!</span>
+          </button>
+          <button class="btn btn-dark btn-xs pause-button">
+            <span class="fa fa-pause">Pause Song</span>
+          </button>
+        </div>
+        <hr />
+      </header>
       <!-- Main display where questions will appear -->
       <display>
-        <div class="row">
-            <div class="col">
-                <!-- Button to start quiz -->
-                <button type="button" class="btn btn-primary quizBtn">Start Quiz</button>
-            </div>
+        <div class="d-flex justify-content-center">
+          <!-- Button to start quiz -->
+          <button type="button" class="btn btn-primary quizBtn btn-lg">
+            Start Quiz
+          </button>
         </div>
       </display>
     </main>
@@ -61,9 +58,7 @@
       integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
       crossorigin="anonymous"
     ></script>
-    <script
-    src="script.js"
-  ></script>
+    <script src="script.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
       integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
