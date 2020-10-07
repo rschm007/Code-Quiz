@@ -10,3 +10,7 @@
         audioElement.pause();
       });
   
+    // When button is pressed, change to quiz questions
+    $(".quizBtn").on("click", function() {
+
+    });
