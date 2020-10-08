@@ -40,9 +40,19 @@ header h2 {
     margin-top: 12%;
 }
 
+.counters {
+    margin-bottom: 2%;
+}
+
 .qst-header {
     padding: 2%;
     background-color: #1F456E;
     color: #ffffff;
     text-align: center;
+}
+
+.btn-block {
+    margin-top: 20%;
+    padding: 20%;
+    width: 150%;
 }

@@ -1,3 +1,11 @@
+// define timer and score count
+var time = 0;
+var count = 0;
+
+// define timer/score card header
+var countCard =
+    "<div class='d-flex justify-content-center'><div class='card counters'> Time = 'time' + Score = 'count' </div>";
+
 // Define vars for question arguments
 var questionOne =
   "<div class='d-flex justify-content-center'><div class='card qst-header'><h3>Question 1:</h3> Commonly used data types DO NOT include: </div>";
@@ -12,10 +20,10 @@ var questionFive =
 
 // define vars for multiple choice questions
 var qstOneInput = [
-  "<button type='button' class='btn-secondary incorrect'>1. strings</button>",
-  "<button type='button' class='btn-secondary incorrect'>2. booleans</button>",
-  "<button type='button' class='btn-secondary correct'>3. alerts</button>",
-  "<button type='button' class='btn-secondary incorrect'>4. numbers</button>",
+  "<button type='button' class='btn-secondary btn-lg btn-block incorrect'>Strings</button>",
+  "<button type='button' class='btn-secondary btn-lg btn-block incorrect'>Booleans</button>",
+  "<button type='button' class='btn-secondary btn-lg btn-block correct'>Alerts</button>",
+  "<button type='button' class='btn-secondary btn-lg btn-block incorrect'>Numbers</button>",
 ];
 
 // define a variable for a blank unordered list to append question choices into
@@ -36,11 +44,16 @@ $(".pause-button").on("click", function () {
   audioElement.pause();
 });
 
-// When button is pressed, change to quiz questions
+// When button is pressed, change to quiz questions, add timer and score card
 $(".quizBtn").on("click", function () {
   $(this).remove();
+
   // append questionOne header variable
   $(".container").prepend(questionOne);
+
+  // prepend timer & scorecard  
+  $(".container").prepend(countCard);
+
   // create function to append qstOneInput into the qst-Input unordered list DOM...
   // detach the list from the DOM so it doesn't refresh the DOM for every list item added and empty the list to remove existing values
   list
@@ -49,12 +62,14 @@ $(".quizBtn").on("click", function () {
     .each(function (i) {
       // define a loop
       for (var i = 0; i < qstOneInput.length; i++) {
-        // append a list with each item in the array
-        $(this).append("<ul>" + qstOneInput[i] + "</ul>");
+        // append DOM with each item in the array
+        $(this).append(qstOneInput[i]);
         if (i == qstOneInput.length - 1) {
-          // at end of loop append the full list back into DOM
+          // at end of loop append the full array back into DOM
           $(this).appendTo(parent);
         }
       }
+
     });
+
 });
