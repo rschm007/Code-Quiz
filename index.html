@@ -19,13 +19,13 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="styles.css" />
 
-    <title>JavaScript Coding Quiz</title>
+    <title>JavaScript Quiz Challenge</title>
   </head>
   <body class="d-flex flex-column">
     <main class="container-fluid flex-fill">
       <!-- Header column with h1, h2 and music button -->
       <header>
-        <h1 class="font-weight-bold">JavaScript Coding Quiz Challenge</h1>
+        <h1 class="font-weight-bold">JavaScript Quiz Challenge</h1>
         <h2 class="font-weight-light font-italic">
           Prove that you're the very best, like no one ever was.
         </h2>
@@ -41,12 +41,16 @@
         <hr />
       </header>
       <!-- Main display where questions will appear -->
-      <display>
+      <display class="container">
         <div class="d-flex justify-content-center">
           <!-- Button to start quiz -->
           <button type="button" class="btn btn-primary quizBtn btn-lg">
             Start Quiz
           </button>
+          <!-- blank unordered list to insert question choices -->
+          <ul id="qst-Input">
+
+          </ul>
         </div>
       </display>
     </main>
