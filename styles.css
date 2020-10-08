@@ -34,8 +34,15 @@ header h2 {
     font-size: 140%;
 }
 
-/* Quiz button styles */
+/* Quiz styles */
 
 .quizBtn {
     margin-top: 12%;
+}
+
+.qst-header {
+    padding: 2%;
+    background-color: #1F456E;
+    color: #ffffff;
+    text-align: center;
 }
