@@ -1,10 +1,24 @@
-// define timer and score count
-var time = 0;
+// define score count
 var scoreCount = 0;
+
+// define timer count and function;
+var timeCount = 60;
+function timer(time,update,complete) {
+  var start = new Date().getTime();
+  var interval = setInterval(function() {
+      var now = time-(new Date().getTime()-start);
+      if( now <= 0) {
+          clearInterval(interval);
+          complete();
+      }
+      else update(Math.floor(now/1000));
+  },100);
+};
+
 
 // define timer/score card header
 var countCard =
-    "<div class='d-flex justify-content-center counters'>  </div>";
+    "<div class='d-flex justify-content-center counters'></div>";
 
 // Define vars for question cards and prompts
 var questionOne =
@@ -81,9 +95,20 @@ $(".quizBtn").on("click", function () {
 
   // prepend timer & scorecard  
   $(".container").prepend(countCard);
-  
+
+  // update countdown from 60 secs
+  timer(
+    60000, // milliseconds
+    function(timeleft) { // called every step to update the visible countdown
+        document.getElementById('timer').innerHTML = timeleft+" second(s)";
+    },
+    function() {
+        alert("You're out of time!");
+    }
+  );
+
   // scorecard holds value of counter in 'counter'id
-  $(".counters").append(("<strong>Time: </strong>" + time) + (" <strong>Score: </strong>" + "<p id='score' placeholder='0'></p>"));
+  $(".counters").append(("<strong>Time: </strong>" + "<p id='timer'></p>") + (" <strong>Score: </strong>" + "<p id='score' placeholder='0'></p>"));
 
   // create function to append qstOneInput into the DOM...
   // detach the list from the DOM so it doesn't refresh the DOM for every list item added and empty the list to remove existing values
