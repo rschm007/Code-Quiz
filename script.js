@@ -40,6 +40,13 @@ var qstThreeInput = [
   "<button type='button' class='btn-secondary btn-lg btn-block trueInp'>All of the Above</button>",
 ];
 
+var qstFourInput = [
+  "<button type='button' class='btn-secondary btn-lg btn-block falseInp'>Commas</button>",
+  "<button type='button' class='btn-secondary btn-lg btn-block falseInp'>Curly Brackets</button>",
+  "<button type='button' class='btn-secondary btn-lg btn-block trueInp'>Quotes</button>",
+  "<button type='button' class='btn-secondary btn-lg btn-block falseInp'>Parentheses</button>",
+];
+
 // define a variable for a blank unordered list to append question choices into
 var list = $("#qst-Input");
 
@@ -146,8 +153,39 @@ $(".quizBtn").on("click", function () {
         $(this).addClass('redBtn');
       });
 
+      // If correct choice was clicked, proceed to next section, remove previous multiple choice buttons and header card
+      $(".trueInp").on("click", function () {
+        $(this).remove();
+
+        // replace questioneThree header DIV with questionFour header DIV
+        $(".questionThree").replaceWith(questionFour);
+
+        // add +1 to score - WIP
+        var count= count + 1;
+
+        // create function to append qstTwoInput into the DOM...
+        // detach the list from the DOM so it doesn't refresh the DOM for every list item added and empty the list to remove existing values
+        list.detach().empty().each(function (i) {
+            // define a loop
+            for (var i = 0; i < qstFourInput.length; i++) {
+              // append DOM with each item in the array
+              $(this).append(qstFourInput[i]);
+              if (i == qstThreeInput.length - 1) {
+                // at end of loop append the full array back into DOM
+                $(this).appendTo(parent);
+              }
+            }
+          });
+
+        // if incorrect option was clicked, change button background color to red
+        $('.falseInp').on('click',function() {
+          $(this).addClass('redBtn');
+        });
+
+      });
     });
     
+  
   });
 });
 
