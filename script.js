@@ -1,10 +1,10 @@
 // define timer and score count
 var time = 0;
-var count = 0;
+var scoreCount = 0;
 
 // define timer/score card header
 var countCard =
-    "<div class='d-flex justify-content-center'><div class='counters'>  </div>";
+    "<div class='d-flex justify-content-center counters'>  </div>";
 
 // Define vars for question cards and prompts
 var questionOne =
@@ -47,6 +47,13 @@ var qstFourInput = [
   "<button type='button' class='btn-secondary btn-lg btn-block falseInp'>Parentheses</button>",
 ];
 
+// define a function for adding +1 to score:
+function plusOne() {
+  scoreCount++;
+  $("#score").text(scoreCount);
+  console.log(scoreCount);
+}
+
 // define a variable for a blank unordered list to append question choices into
 var list = $("#qst-Input");
 
@@ -74,7 +81,9 @@ $(".quizBtn").on("click", function () {
 
   // prepend timer & scorecard  
   $(".container").prepend(countCard);
-  $(".counters").append(("<strong>Time: </strong>" + time) + (" <strong>Score: </strong>" + count));
+  
+  // scorecard holds value of counter in 'counter'id
+  $(".counters").append(("<strong>Time: </strong>" + time) + (" <strong>Score: </strong>" + "<p id='score' placeholder='0'></p>"));
 
   // create function to append qstOneInput into the DOM...
   // detach the list from the DOM so it doesn't refresh the DOM for every list item added and empty the list to remove existing values
@@ -98,12 +107,10 @@ $(".quizBtn").on("click", function () {
   // If correct choice was clicked, proceed to next section, remove previous multiple choice buttons and header card
   $(".trueInp").on("click", function () {
     $(this).remove();
+    plusOne();
 
     // replace questioneOne header DIV with questionTwo header DIV
     $(".questionOne").replaceWith(questionTwo);
-
-    // add +1 to score - WIP
-    var count= count + 1;
 
     // create function to append qstTwoInput into the DOM...
     // detach the list from the DOM so it doesn't refresh the DOM for every list item added and empty the list to remove existing values
@@ -127,12 +134,10 @@ $(".quizBtn").on("click", function () {
     // If correct choice was clicked, proceed to next section, remove previous multiple choice buttons and header card
     $(".trueInp").on("click", function () {
       $(this).remove();
+      plusOne();
 
       // replace questioneTwo header DIV with questionThree header DIV
       $(".questionTwo").replaceWith(questionThree);
-
-      // add +1 to score - WIP
-      var count= count + 1;
 
       // create function to append qstTwoInput into the DOM...
       // detach the list from the DOM so it doesn't refresh the DOM for every list item added and empty the list to remove existing values
@@ -156,12 +161,11 @@ $(".quizBtn").on("click", function () {
       // If correct choice was clicked, proceed to next section, remove previous multiple choice buttons and header card
       $(".trueInp").on("click", function () {
         $(this).remove();
+        plusOne();
 
         // replace questioneThree header DIV with questionFour header DIV
         $(".questionThree").replaceWith(questionFour);
 
-        // add +1 to score - WIP
-        var count= count + 1;
 
         // create function to append qstTwoInput into the DOM...
         // detach the list from the DOM so it doesn't refresh the DOM for every list item added and empty the list to remove existing values
@@ -183,9 +187,8 @@ $(".quizBtn").on("click", function () {
         });
 
       });
+
     });
-    
-  
   });
 });
 
