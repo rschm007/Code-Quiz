@@ -1,6 +1,13 @@
 // define score count
 var scoreCount = 0;
 
+// define a function for adding +1 to score:
+function plusOne() {
+  scoreCount++;
+  $("#score").text(scoreCount);
+  console.log(scoreCount);
+}
+
 // define timer count and function;
 var timeCount = 60;
 function timer(time,update,complete) {
@@ -32,7 +39,11 @@ var questionFour =
 var questionFive =
   "<div class='d-flex justify-content-center questionFive'><div class='card qst-header'><h3>Question 5:</h3> String values must be enclosed within ___ when being assigned to variables  </div>";
 
-// define vars for multiple choice questions
+// define var for high score prompt card
+var highScorePrompt =
+  "<div class='d-flex justify-content-center highScore'><div class='card qst-header'><h3>All done!</h3></div>";
+
+// define arrays for multiple choice questions
 var qstOneInput = [
   "<button type='button' class='btn-secondary btn-lg btn-block falseInp'>Strings</button>",
   "<button type='button' class='btn-secondary btn-lg btn-block falseInp'>Booleans</button>",
@@ -60,13 +71,6 @@ var qstFourInput = [
   "<button type='button' class='btn-secondary btn-lg btn-block trueInp'>Quotes</button>",
   "<button type='button' class='btn-secondary btn-lg btn-block falseInp'>Parentheses</button>",
 ];
-
-// define a function for adding +1 to score:
-function plusOne() {
-  scoreCount++;
-  $("#score").text(scoreCount);
-  console.log(scoreCount);
-}
 
 // define a variable for a blank unordered list to append question choices into
 var list = $("#qst-Input");
@@ -96,19 +100,20 @@ $(".quizBtn").on("click", function () {
   // prepend timer & scorecard  
   $(".container").prepend(countCard);
 
-  // update countdown from 60 secs
+  // update timer countdown from 60 secs
   timer(
     60000, // milliseconds
     function(timeleft) { // called every step to update the visible countdown
-        document.getElementById('timer').innerHTML = timeleft+" second(s)";
+        document.getElementById('timer').innerHTML = "<strong>Time Left: </strong>" + timeleft + " second(s)";
     },
     function() {
         alert("You're out of time!");
     }
   );
 
-  // scorecard holds value of counter in 'counter'id
-  $(".counters").append(("<strong>Time: </strong>" + "<p id='timer'></p>") + (" <strong>Score: </strong>" + "<p id='score' placeholder='0'></p>"));
+  // insert scorecards
+  $("#counters").append("<p id='timer'></p>");
+  $("#counters").append(" <strong>Score: </strong>" + "<p id='score'></p>");
 
   // create function to append qstOneInput into the DOM...
   // detach the list from the DOM so it doesn't refresh the DOM for every list item added and empty the list to remove existing values
@@ -211,9 +216,17 @@ $(".quizBtn").on("click", function () {
           $(this).addClass('redBtn');
         });
 
-      });
+        // If correct choice was clicked, proceed to final highscore section
+        $(".trueInp").on("click", function () {
+          $("#qst-Input").remove();
+          plusOne();
 
+          // replace questioneFour header DIV with highScorePrompt div
+          $(".questionFour").replaceWith(highScorePrompt);
+
+      });
     });
   });
+});
 });
 
