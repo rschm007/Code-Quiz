@@ -33,6 +33,13 @@ var qstTwoInput = [
   "<button type='button' class='btn-secondary btn-lg btn-block falseInp'>Square Brackets</button>",
 ];
 
+var qstThreeInput = [
+  "<button type='button' class='btn-secondary btn-lg btn-block falseInp'>Numbers and Strings</button>",
+  "<button type='button' class='btn-secondary btn-lg btn-block falseInp'>Other Arrays</button>",
+  "<button type='button' class='btn-secondary btn-lg btn-block falseInp'>Booleans</button>",
+  "<button type='button' class='btn-secondary btn-lg btn-block trueInp'>All of the Above</button>",
+];
+
 // define a variable for a blank unordered list to append question choices into
 var list = $("#qst-Input");
 
@@ -74,7 +81,6 @@ $(".quizBtn").on("click", function () {
           $(this).appendTo(parent);
         }
       }
-
     });
 
     // if incorrect option was clicked, change button background color to red
@@ -82,12 +88,15 @@ $(".quizBtn").on("click", function () {
     $(this).addClass('redBtn');
   });
 
-    // If correct choice was clicked, proceed to next section, remove previous multiple choice buttons and header card
+  // If correct choice was clicked, proceed to next section, remove previous multiple choice buttons and header card
   $(".trueInp").on("click", function () {
     $(this).remove();
 
     // replace questioneOne header DIV with questionTwo header DIV
     $(".questionOne").replaceWith(questionTwo);
+
+    // add +1 to score - WIP
+    var count= count + 1;
 
     // create function to append qstTwoInput into the DOM...
     // detach the list from the DOM so it doesn't refresh the DOM for every list item added and empty the list to remove existing values
@@ -101,7 +110,6 @@ $(".quizBtn").on("click", function () {
             $(this).appendTo(parent);
           }
         }
-
       });
 
     // if incorrect option was clicked, change button background color to red
@@ -109,7 +117,37 @@ $(".quizBtn").on("click", function () {
       $(this).addClass('redBtn');
     });
 
-  });
+    // If correct choice was clicked, proceed to next section, remove previous multiple choice buttons and header card
+    $(".trueInp").on("click", function () {
+      $(this).remove();
 
+      // replace questioneTwo header DIV with questionThree header DIV
+      $(".questionTwo").replaceWith(questionThree);
+
+      // add +1 to score - WIP
+      var count= count + 1;
+
+      // create function to append qstTwoInput into the DOM...
+      // detach the list from the DOM so it doesn't refresh the DOM for every list item added and empty the list to remove existing values
+      list.detach().empty().each(function (i) {
+          // define a loop
+          for (var i = 0; i < qstThreeInput.length; i++) {
+            // append DOM with each item in the array
+            $(this).append(qstThreeInput[i]);
+            if (i == qstThreeInput.length - 1) {
+              // at end of loop append the full array back into DOM
+              $(this).appendTo(parent);
+            }
+          }
+        });
+
+      // if incorrect option was clicked, change button background color to red
+      $('.falseInp').on('click',function() {
+        $(this).addClass('redBtn');
+      });
+
+    });
+    
+  });
 });
 
