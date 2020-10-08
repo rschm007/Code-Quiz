@@ -53,7 +53,7 @@ $(".quizBtn").on("click", function () {
 
   // prepend timer & scorecard  
   $(".container").prepend(countCard);
-  $(".counters").append(("<strong>Time: </strong>" + time) + ("<strong>Score: </strong>" + count));
+  $(".counters").append(("<strong>Time: </strong>" + time) + (" <strong>Score: </strong>" + count));
 
   // create function to append qstOneInput into the DOM...
   // detach the list from the DOM so it doesn't refresh the DOM for every list item added and empty the list to remove existing values
@@ -69,37 +69,41 @@ $(".quizBtn").on("click", function () {
       }
 
     });
+
+// if incorrect option was clicked, alert
+} if ($('.incorrectOne').data('clicked')) {
+    alert('That is the wrong choice.');
+
+// if correct is clicked, display next question
+} else {
+    $(".correctOne").on("click", function() {
+        console.log("I was clicked");
+        // remove all previous divs from the display
+        $(".container").remove();
+        // add to score count
+        count++;
+    
+        // prepend DOM with questionTwo header variable and 
+        $(".container").prepend(questionTwo);
+    
+      // prepend timer & scorecard  
+      $(".container").prepend(countCard);
+    
+      //  function to append qstTwoInput into the DOM...
+      list.detach().empty().each(function (i) {
+        // define a loop
+        for (var i = 0; i < qstOneInput.length; i++) {
+          // append DOM with each item in the array
+          $(this).append(qstTwoInput[i]);
+          if (i == qstTwoInput.length - 1) {
+            // at end of loop append the full array back into DOM
+            $(this).appendTo(parent);
+          }
+        }
+    
+      });
 });
 
-// console log correct button click event
-$(".correctOne").on("click", console.log("correct button clicked"));
 
-// create functions for events, clicking on correct and incorrect inputs
-// function for correct input...
-$(".correctOne").on("click", function() {
-    // remove all previous divs from the display
-    $(".container").remove();
-    // add to score count
-    count++;
 
-    // prepend DOM with questionTwo header variable and 
-    $(".container").prepend(questionTwo);
 
-  // prepend timer & scorecard  
-  $(".container").prepend(countCard);
-
-  //  function to append qstTwoInput into the DOM...
-  list.detach().empty().each(function (i) {
-    // define a loop
-    for (var i = 0; i < qstOneInput.length; i++) {
-      // append DOM with each item in the array
-      $(this).append(qstTwoInput[i]);
-      if (i == qstTwoInput.length - 1) {
-        // at end of loop append the full array back into DOM
-        $(this).appendTo(parent);
-      }
-    }
-
-  });
-
-})
