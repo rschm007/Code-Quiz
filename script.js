@@ -77,9 +77,9 @@ $(".quizBtn").on("click", function () {
 
     });
 
-    // if incorrect option was clicked, alert - WIP change buttons to RED to mark wrong choices
+    // if incorrect option was clicked, change button background color to red
   $('.falseInp').on('click',function() {
-    alert('That is the wrong choice.');
+    $(this).addClass('redBtn');
   });
 
     // If correct choice was clicked, proceed to next section, remove previous multiple choice buttons and header card
@@ -104,9 +104,9 @@ $(".quizBtn").on("click", function () {
 
       });
 
-      // if incorrect option was clicked, alert
+    // if incorrect option was clicked, change button background color to red
     $('.falseInp').on('click',function() {
-      alert('That is the wrong choice.');
+      $(this).addClass('redBtn');
     });
 
   });

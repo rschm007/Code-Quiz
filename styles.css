@@ -57,3 +57,7 @@ header h2 {
     padding: 20%;
     width: 150%;
 }
+
+.redBtn {
+    background-color: #8b0000;
+}
