@@ -10,6 +10,7 @@ function plusOne() {
 
 // define timer count and function;
 var timeCount = 60;
+var interval;
 function timer(time,update,complete) {
   var start = new Date().getTime();
   var interval = setInterval(function() {
@@ -22,6 +23,11 @@ function timer(time,update,complete) {
   },100);
 };
 
+// define a function to stop the timer
+function stopTimer() {
+  clearInterval(interval);
+  return interval;
+};
 
 // define timer/score card header
 var countCard =
@@ -78,6 +84,11 @@ var list = $("#qst-Input");
 // define a variable for the list parent
 var parent = list.parent();
 
+// define a variable for score count p display
+var finalScoreDisp = "<div class='d-flex align-items-center finalScoreDisplay'><p>Your final score is " + scoreCount + ".</p></div>"
+// define a variable for userInitialsInput
+var userIntInp = "<form class='d-flex align-items-end'><label for='enterInitials'>Enter Initials:</label><input type='initials' class='form-control' id='enterInitials' placeholder='Enter initials'><button type='submit' class='btn btn-primary'>Submit</button></form>"
+
 // Gets Link for Theme Song
 var audioElement = document.createElement("audio");
 audioElement.setAttribute("src", "assets/Pokemon-Theme-Song.mp3");
@@ -90,6 +101,9 @@ $(".pause-button").on("click", function () {
   audioElement.pause();
 });
 
+
+
+// begin quiz DOM functions...
 // When button is pressed, change to quiz questions, add timer and score card
 $(".quizBtn").on("click", function () {
   $(this).remove();
@@ -105,9 +119,6 @@ $(".quizBtn").on("click", function () {
     60000, // milliseconds
     function(timeleft) { // called every step to update the visible countdown
         document.getElementById('timer').innerHTML = "<strong>Time Left: </strong>" + timeleft + " second(s)";
-    },
-    function() {
-        alert("You're out of time!");
     }
   );
 
@@ -221,8 +232,17 @@ $(".quizBtn").on("click", function () {
           $("#qst-Input").remove();
           plusOne();
 
+          // remove scorecard and stop timer
+          $("#counters").remove();
+          stopTimer();
+          
           // replace questioneFour header DIV with highScorePrompt div
           $(".questionFour").replaceWith(highScorePrompt);
+
+          // insert <p> into dom with score variable so user knows what they scored
+          $(".highScore").append(finalScoreDisp)
+          // Add a jquery dialog 
+          $(".highScore").append(userIntInp)
 
       });
     });
