@@ -87,7 +87,7 @@ var parent = list.parent();
 
 // define a variable for score count p display
 var finalScoreDisp = "<div class='d-flex align-items-center finalScoreDisplay'><p>Your final score is " + scoreCount + ".</p></div>";
-// define a variable for a form to gather user input at end of quiz
+// define a variable for a form to gather user input at end of quiz  - probably better to convert to Bootstrap grid layout
 var userIntInp =
   "<form method='POST'><textarea id='user-initials' rows='1' cols='30'></textarea><input type='submit' value='Submit'></form>"
 
@@ -258,6 +258,9 @@ $(".quizBtn").on("click", function () {
 
         });
         // store user high score input in local storage
+        var inputInit = document.getElementById("#user-initials");
+        localStorage.setItem("user-initials", inputInit.value);
+
       });
     });
   });
