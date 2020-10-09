@@ -46,6 +46,10 @@ var questionFive =
 var highScorePrompt =
   "<div class='d-flex justify-content-center highScore'><div class='card qst-header'><h3>All done!</h3></div>";
 
+// define var for div to insert form into
+var scoreDiv =
+  "<div class='d-flex justify-content-center scoreForm'></div>"
+
 // define arrays for multiple choice questions
 var qstOneInput = [
   "<button type='button' class='btn-secondary btn-lg btn-block falseInp'>Strings</button>",
@@ -85,7 +89,7 @@ var parent = list.parent();
 var finalScoreDisp = "<div class='d-flex align-items-center finalScoreDisplay'><p>Your final score is " + scoreCount + ".</p></div>";
 // define a variable for a form to gather user input at end of quiz
 var userIntInp =
-  "<div class='row'><div class='col'><form method='POST'><textarea id='user-initials' rows='1' cols='30'></textarea><input type='submit' value='Submit'></form></div></div>"
+  "<form method='POST'><textarea id='user-initials' rows='1' cols='30'></textarea><input type='submit' value='Submit'></form>"
 
 // Gets Link for Theme Song
 var audioElement = document.createElement("audio");
@@ -117,7 +121,7 @@ $(".quizBtn").on("click", function () {
     60000, // milliseconds
     function (timeleft) {
       // called every step to update the visible countdown
-      $(".counters").html("<strong>Time Left: </strong> " + timeleft + " second(s)")
+      $("#timer").html("<strong>Time Left: </strong> " + timeleft + " second(s)")
     }
   );
 
@@ -246,11 +250,11 @@ $(".quizBtn").on("click", function () {
           $("#counters").remove();
           stopTimer();
 
-          // replace questioneFour header DIV with highScorePrompt div
+          // replace questioneFour header DIV with highScorePrompt header DIV
           $(".questionFour").replaceWith(highScorePrompt);
 
           // Show the user their final score and insert a form for user initials
-          $(".highScore").append(finalScoreDisp + "<strong> Please type your initials below </strong>" + userIntInp);
+          $(".highScore").append(finalScoreDisp).append("<strong>Please type your initials</strong>").append(userIntInp);
 
         });
         // store user high score input in local storage

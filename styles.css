@@ -56,9 +56,3 @@ header h2 {
 .redBtn {
     background-color: #8b0000;
 }
-
-.finalScoreDisplay {
-    position: absolute;
-    margin-top: 13%;
-    text-align: center;
-}
