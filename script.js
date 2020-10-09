@@ -117,8 +117,7 @@ $(".quizBtn").on("click", function () {
     60000, // milliseconds
     function (timeleft) {
       // called every step to update the visible countdown
-      document.getElementById("timer").innerHTML =
-        "<strong>Time Left: </strong>" + timeleft + " second(s)";
+      $(".counters").html("<strong>Time Left: </strong> " + timeleft + " second(s)")
     }
   );
 
