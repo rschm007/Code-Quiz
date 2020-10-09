@@ -5,33 +5,30 @@ var scoreCount = 0;
 function plusOne() {
   scoreCount++;
   $("#score").text(scoreCount);
-  console.log(scoreCount);
 }
 
 // define timer count and function;
 var timeCount = 60;
 var interval;
-function timer(time,update,complete) {
+function timer(time, update, complete) {
   var start = new Date().getTime();
-  var interval = setInterval(function() {
-      var now = time-(new Date().getTime()-start);
-      if( now <= 0) {
-          clearInterval(interval);
-          complete();
-      }
-      else update(Math.floor(now/1000));
-  },100);
-};
+  var interval = setInterval(function () {
+    var now = time - (new Date().getTime() - start);
+    if (now <= 0) {
+      clearInterval(interval);
+      complete();
+    } else update(Math.floor(now / 1000));
+  }, 100);
+}
 
 // define a function to stop the timer
 function stopTimer() {
   clearInterval(interval);
   return interval;
-};
+}
 
 // define timer/score card header
-var countCard =
-    "<div class='d-flex justify-content-center counters'></div>";
+var countCard = "<div class='d-flex justify-content-center counters'></div>";
 
 // Define vars for question cards and prompts
 var questionOne =
@@ -85,9 +82,10 @@ var list = $("#qst-Input");
 var parent = list.parent();
 
 // define a variable for score count p display
-var finalScoreDisp = "<div class='d-flex align-items-center finalScoreDisplay'><p>Your final score is " + scoreCount + ".</p></div>"
-// define a variable for userInitialsInput
-var userIntInp = "<form class='d-flex align-items-end'><label for='enterInitials'>Enter Initials:</label><input type='initials' class='form-control' id='enterInitials' placeholder='Enter initials'><button type='submit' class='btn btn-primary'>Submit</button></form>"
+var finalScoreDisp = "<div class='d-flex align-items-center finalScoreDisplay'><p>Your final score is " + scoreCount + ".</p></div>";
+// define a variable for a form to gather user input at end of quiz
+var userIntInp =
+  "<div class='row'><div class='col'><form method='POST'><textarea id='user-initials' rows='1' cols='30'></textarea><input type='submit' value='Submit'></form></div></div>"
 
 // Gets Link for Theme Song
 var audioElement = document.createElement("audio");
@@ -101,8 +99,8 @@ $(".pause-button").on("click", function () {
   audioElement.pause();
 });
 
-
-
+// 
+// 
 // begin quiz DOM functions...
 // When button is pressed, change to quiz questions, add timer and score card
 $(".quizBtn").on("click", function () {
@@ -111,14 +109,16 @@ $(".quizBtn").on("click", function () {
   // prepend questionOne header variable
   $(".container").prepend(questionOne);
 
-  // prepend timer & scorecard  
+  // prepend timer & scorecard
   $(".container").prepend(countCard);
 
   // update timer countdown from 60 secs
   timer(
     60000, // milliseconds
-    function(timeleft) { // called every step to update the visible countdown
-        document.getElementById('timer').innerHTML = "<strong>Time Left: </strong>" + timeleft + " second(s)";
+    function (timeleft) {
+      // called every step to update the visible countdown
+      document.getElementById("timer").innerHTML =
+        "<strong>Time Left: </strong>" + timeleft + " second(s)";
     }
   );
 
@@ -128,7 +128,10 @@ $(".quizBtn").on("click", function () {
 
   // create function to append qstOneInput into the DOM...
   // detach the list from the DOM so it doesn't refresh the DOM for every list item added and empty the list to remove existing values
-  list.detach().empty().each(function (i) {
+  list
+    .detach()
+    .empty()
+    .each(function (i) {
       // define a loop
       for (var i = 0; i < qstOneInput.length; i++) {
         // append DOM with each item in the array
@@ -140,9 +143,9 @@ $(".quizBtn").on("click", function () {
       }
     });
 
-    // if incorrect option was clicked, change button background color to red
-  $('.falseInp').on('click',function() {
-    $(this).addClass('redBtn');
+  // if incorrect option was clicked, change button background color to red
+  $(".falseInp").on("click", function () {
+    $(this).addClass("redBtn");
   });
 
   // If correct choice was clicked, proceed to next section, remove previous multiple choice buttons and header card
@@ -155,7 +158,10 @@ $(".quizBtn").on("click", function () {
 
     // create function to append qstTwoInput into the DOM...
     // detach the list from the DOM so it doesn't refresh the DOM for every list item added and empty the list to remove existing values
-    list.detach().empty().each(function (i) {
+    list
+      .detach()
+      .empty()
+      .each(function (i) {
         // define a loop
         for (var i = 0; i < qstTwoInput.length; i++) {
           // append DOM with each item in the array
@@ -168,8 +174,8 @@ $(".quizBtn").on("click", function () {
       });
 
     // if incorrect option was clicked, change button background color to red
-    $('.falseInp').on('click',function() {
-      $(this).addClass('redBtn');
+    $(".falseInp").on("click", function () {
+      $(this).addClass("redBtn");
     });
 
     // If correct choice was clicked, proceed to next section, remove previous multiple choice buttons and header card
@@ -182,7 +188,10 @@ $(".quizBtn").on("click", function () {
 
       // create function to append qstTwoInput into the DOM...
       // detach the list from the DOM so it doesn't refresh the DOM for every list item added and empty the list to remove existing values
-      list.detach().empty().each(function (i) {
+      list
+        .detach()
+        .empty()
+        .each(function (i) {
           // define a loop
           for (var i = 0; i < qstThreeInput.length; i++) {
             // append DOM with each item in the array
@@ -195,8 +204,8 @@ $(".quizBtn").on("click", function () {
         });
 
       // if incorrect option was clicked, change button background color to red
-      $('.falseInp').on('click',function() {
-        $(this).addClass('redBtn');
+      $(".falseInp").on("click", function () {
+        $(this).addClass("redBtn");
       });
 
       // If correct choice was clicked, proceed to next section, remove previous multiple choice buttons and header card
@@ -207,10 +216,12 @@ $(".quizBtn").on("click", function () {
         // replace questioneThree header DIV with questionFour header DIV
         $(".questionThree").replaceWith(questionFour);
 
-
         // create function to append qstTwoInput into the DOM...
         // detach the list from the DOM so it doesn't refresh the DOM for every list item added and empty the list to remove existing values
-        list.detach().empty().each(function (i) {
+        list
+          .detach()
+          .empty()
+          .each(function (i) {
             // define a loop
             for (var i = 0; i < qstFourInput.length; i++) {
               // append DOM with each item in the array
@@ -223,8 +234,8 @@ $(".quizBtn").on("click", function () {
           });
 
         // if incorrect option was clicked, change button background color to red
-        $('.falseInp').on('click',function() {
-          $(this).addClass('redBtn');
+        $(".falseInp").on("click", function () {
+          $(this).addClass("redBtn");
         });
 
         // If correct choice was clicked, proceed to final highscore section
@@ -235,18 +246,16 @@ $(".quizBtn").on("click", function () {
           // remove scorecard and stop timer
           $("#counters").remove();
           stopTimer();
-          
+
           // replace questioneFour header DIV with highScorePrompt div
           $(".questionFour").replaceWith(highScorePrompt);
 
-          // insert <p> into dom with score variable so user knows what they scored
-          $(".highScore").append(finalScoreDisp)
-          // Add a jquery dialog 
-          $(".highScore").append(userIntInp)
+          // Show the user their final score and insert a form for user initials
+          $(".highScore").append(finalScoreDisp + "<strong> Please type your initials below </strong>" + userIntInp);
 
+        });
+        // store user high score input in local storage
       });
     });
   });
 });
-});
-
