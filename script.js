@@ -23,8 +23,7 @@ function timer(time, update, complete) {
 
 // define a function to stop the timer
 function stopTimer() {
-  clearInterval(interval);
-  return interval;
+  clearInterval(interval);  
 }
 
 // define timer/score card header
