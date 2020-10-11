@@ -45,6 +45,11 @@ var questionFive =
 var highScorePrompt =
   "<div class='d-flex justify-content-center highScore'><div class='card qst-header'><h3>All done!</h3></div>";
 
+// define a var for the high score list at the end of the quiz
+// define var for high score prompt card
+var highScores =
+  "<div class='d-flex justify-content-center highScores'><div class='card qst-header'><h3>High Scores</h3></div>";
+
 // define var for div to insert form into
 var scoreDiv =
   "<div class='d-flex justify-content-center scoreForm'></div>"
@@ -88,11 +93,12 @@ var parent = list.parent();
 var finalScoreDisp = "<div class='d-flex align-items-center finalScoreDisplay'><p>Your final score is " + scoreCount + ".</p></div>";
 // define a variable for a form to gather user input at end of quiz  - probably better to convert to Bootstrap grid layout
 var userIntInp =
-  "<form method='POST'><textarea id='user-initials' rows='1' cols='30'></textarea><input type='submit' value='Submit'></form>"
+  "<form><textarea id='name' rows='1' cols='30'></textarea><input type='submit' value='submit' id='formSubmit'></form>"
 
 // Gets Link for Theme Song
 var audioElement = document.createElement("audio");
 audioElement.setAttribute("src", "assets/Pokemon-Theme-Song.mp3");
+
 
 // Music Button
 $(".theme-button").on("click", function () {
@@ -255,10 +261,31 @@ $(".quizBtn").on("click", function () {
           // Show the user their final score and insert a form for user initials
           $(".highScore").append(finalScoreDisp).append("<strong>Please type your initials</strong>").append(userIntInp);
 
-        });
-        // store user high score input in local storage
-        var inputInit = document.getElementById("#user-initials");
-        localStorage.setItem("user-initials", inputInit.value);
+        // define a function to store user high score input in local storage
+        function persistInput(input) {
+            var key = "input-" + input.id;
+            var storedValue = localStorage.getItem(key);
+            if (storedValue)
+              inputValue = storedValue;
+            input.addEventListener("input", function() {
+              localStorage.setItem(key, input.value);
+            });
+        };
+
+        // execute function
+          var inputEl = document.getElementById("submit");
+          persistInput(inputEl);
+
+        })
+          // when user clicks submit, a new page with high scores should display. High scores should be retrieved from local storage
+        $("#formSubmit").on("click", function() {
+          // remove final score display
+          $(".finalScoreDisplay").remove();
+          // remove form
+          $("#formSubmit").remove();
+          // replace header with new header
+          $(".qst-header").replaceWith(highScores);
+        })
 
       });
     });
