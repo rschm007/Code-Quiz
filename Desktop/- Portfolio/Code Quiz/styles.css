@@ -1,0 +1,86 @@
+/* Body background properties */
+
+body {
+    background:
+    linear-gradient(27deg, #151515 5px, transparent 5px) 0 5px,
+    linear-gradient(207deg, #151515 5px, transparent 5px) 10px 0px,
+    linear-gradient(27deg, #222 5px, transparent 5px) 0px 10px,
+    linear-gradient(207deg, #222 5px, transparent 5px) 10px 5px,
+    linear-gradient(90deg, #1b1b1b 10px, transparent 10px),
+    linear-gradient(#1d1d1d 25%, #1a1a1a 25%, #1a1a1a 50%, transparent 50%, transparent 75%, #242424 75%, #242424);
+    background-color: #131313;opacity:0.92;
+    background-size: 20px 20px;
+    min-height:100vh;
+}
+
+/* Main body styles */
+
+.container {
+    position: absolute;
+    width: 76%;
+    top: 40px;
+    bottom: 100px;
+    left: 10%;
+    right: 10%;
+    background-color: #ffffff;opacity:0.96;
+}
+
+/* Header styles */
+
+header {
+    text-align: center;
+    margin: 5% auto auto auto;
+}
+
+header h2 {
+    font-size: 140%;
+}
+
+/* Quiz styles */
+
+.quizBtn {
+    margin-top: 12%;
+}
+
+.renderC {
+    padding: 2%;
+    background-color: #808080;
+    color: #ffffff;
+    text-align: center;
+}
+
+.renderH {
+    padding: 2%;
+    background-color: #030303;
+    color: #ffffff;
+    text-align: center;
+}
+
+.renderQ {
+    margin-top: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.question {
+    margin: 3%;
+}
+
+.choiceCorrect {
+    margin-top: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #b8d5cd;
+    border: 1px solid #006a4e;
+}
+
+.choiceIncorrect {
+    margin-top: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fceded;
+    border: 1px solid #e22b2a;
+}
